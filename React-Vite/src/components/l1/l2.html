@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #asideMenu {
+            animation: slide 1s forwards;
+            opacity: 0;
+        }
+
+        @keyframes slide {
+            from {
+                opacity: 0;
+                left: -50px;
+            }
+
+            to {
+                opacity: 1;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- header -->
+<header class="md:py-8 px-4 bg-blue-400 text-white grid grid-cols-12 items-center">
+  
+    <!-- left -->
+    <div class="col-span-6 md:col-span-5 flex gap-4 items-center">
+      <div class="w-12 h-12 bg-white text-blue-400 text-2xl flex items-center justify-center">FB</div>
+      <div>
+        <input type="text" class="p-2 border-gray-400 rounded-md">
+      </div>
+    </div>
+  
+  <!-- center -->
+    <div class="col-span-3 md:col-span-3 flex items-center py-10 md:py-0">
+      center
+    </div>
+  
+    <div class="col-span-3 md:hidden flex justify-end">
+      <svg id="hamMenu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </div>
+  
+    <div class="col-span-12 md:col-span-4 gap-4 md:gap-0 md:justify-between hidden md:flex">
+      <button class="p-2 rounded-md bg-white text-blue-400">Home</button>
+      <button class="p-2 rounded-md bg-white text-blue-400">Blog</button>
+      <button class="p-2 rounded-md bg-white text-blue-400">Terms</button>
+      <button class="p-2 rounded-md bg-white text-blue-400">Privacy</button>
+    </div>
+  </header>
+  
+  <!--  second row -->
+  <div class="sm:grid grid-cols-12">
+  
+    <aside class="col-span-3 bg-gray-200 p-4">
+      sidebar
+    </aside>
+  
+    <section class="sm:grid grid-cols-12 gap-4 col-span-9">
+      <div class="col-span-3 p-4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum deserunt ea nemo sint doloribus, maxime magnam adipisci minus optio laborum! Iusto et quos fuga quibusdam necessitatibus molestias dolorem mollitia fugiat!
+      </div>
+      <div class="col-span-3 p-4">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse id quo unde qui quia, voluptatem autem distinctio beatae modi nostrum tenetur cumque mollitia excepturi voluptates. Saepe iure amet repudiandae repellat.
+      </div>
+      <div class="col-span-6 p-4">
+        <h2 class="text-2xl font-medium mb-4">Article 1</h2>
+        <div>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum saepe, corporis ad est qui magni quia, eaque quasi, dignissimos vel ex neque minima dolor sapiente! Ut tempore molestiae suscipit eveniet!
+        </div>
+      </div>
+    </section>
+  
+  </div>
+  
+  <footer class="p-4 bg-blue-400 sm:grid grid-cols-12 text-center flex flex-col gap-4 sm:gap-0 sm:text-left">
+    <div class="col-span-8">
+      Copyright &copy; Cicalino
+    </div>
+    <div class="col-span-2">
+      right
+    </div>
+    <div class="col-span-2">
+      right 2
+    </div>
+  </footer>
+  
+  <aside id="asideMenu" class="hidden h-screen bg-gray-500 w-[200px] top-0 left-0 flex flex-col justify-between">
+    <div class="p-4 bg-black text-white">voice 1</div>
+    <div class="p-4 bg-black text-white">voice 2</div>
+    <div class="p-4 bg-black text-white">voice 3</div>
+    <div class="p-4 bg-black text-white">voice 4</div>
+  </aside>
+
+  <script>
+    const $ = (id) => document.getElementById(id) 
+  
+    const hamMenu = $('hamMenu')
+    const asideMenu = $('asideMenu')
+
+    hamMenu.addEventListener('click', () => {
+        
+        if( asideMenu.classList.contains('hidden') ) {
+            asideMenu.classList.remove('hidden')
+            asideMenu.classList.add('fixed')
+        } 
+        else {
+            asideMenu.classList.remove('fixed')
+            asideMenu.classList.add('hidden')
+        }
+
+    })
+  </script>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        main {
+            background-color: bisque;
+            width: 80vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(56, 56, 171);
+        }
+    </style>
+</head>
+<body>
+
+    <main id="main">
+        <div class="box">
+            testo
+        </div>
+    </main>
+
+    <script>
+        let start = 100
+        document.getElementById('main').addEventListener('click', () => {
+            start -= 20
+            main.style.height = start + 'vh'
+        })
+    </script>
+</body>
+</html>
