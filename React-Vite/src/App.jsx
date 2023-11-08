@@ -1,10 +1,11 @@
 import './App.css'
+import MadeForCode from './components/App'
 
 function App() {
 
   return (
     <>
-      <h1>Hello word</h1>
+      <MadeForCode />
     </>
   )
 }

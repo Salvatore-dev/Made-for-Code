@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .menu {
+    @apply mt-10 flex gap-4;
+  }
+
+  .menu a {
+    @apply p-2 bg-gray-300;
+  }
+}

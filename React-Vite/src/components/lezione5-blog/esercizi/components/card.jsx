@@ -1,10 +1,21 @@
 import { useState } from "react"
 
-export default function Card({detail, backside, getCard, mazzo}) {
+export default function Card({card, backside, getCard, deck, alternate}) {
     const [isFlipped, setIsFlipped] = useState(false)
 
-    const flipping = (e)=>{
-        getCard(e, mazzo)
+    function Altrnate(boolean, string) {
+        if (string === 'one') {
+            return boolean
+        } else {
+            return !boolean
+        }
+    }
+
+    const flipping = ()=>{
+        getCard({
+            type: deck,
+            cardId: card.id,
+        })
         
         //console.log(isFlipped);
         if (!isFlipped) {
@@ -17,8 +28,8 @@ export default function Card({detail, backside, getCard, mazzo}) {
         } 
     }
     return (
-        <div data-label={mazzo} className="w-40 h-56 rounded-lg overflow-hidden col-span-2 my-1 border border-black border-3" onClick={()=> flipping(detail.id)}>
-            <img src={isFlipped? detail.url: backside.url} alt={isFlipped? detail.description: backside.description} className="w-full h-full object-cover"></img>
+        <div className={`${(card.isMatched || Altrnate(alternate, deck)) && 'pointer-events-none'} w-40 h-56 rounded-lg overflow-hidden my-1 border ${card.isMatched? "border-green-600" : "border-black"} border-3`} onClick={flipping} key={card.description}>
+            <img src={card.isMatched || isFlipped ? card.url: backside.url} alt={isFlipped? card.description: backside.description} className="w-full h-full object-cover"></img>
         </div>
     )
 }
