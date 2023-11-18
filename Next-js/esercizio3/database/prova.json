@@ -1,0 +1,207 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "label": "Smartphone XYZ",
+      "description": "Un potente smartphone con schermo OLED e fotocamera da 12MP.",
+      "price": 599.99,
+      "category": 1,
+      "image": "smartphone_xyz.jpg"
+    },
+    {
+      "id": 2,
+      "label": "Maglione invernale",
+      "description": "Un maglione caldo e confortevole per l'inverno.",
+      "price": 49.99,
+      "category": 2,
+      "image": "maglione_invernale.jpg"
+    },
+    {
+      "id": 3,
+      "label": "Tavolo da pranzo in legno",
+      "description": "Un tavolo da pranzo robusto in legno massello.",
+      "price": 299.99,
+      "category": 3,
+      "image": "tavolo_legno.jpg"
+    },
+    {
+      "id": 4,
+      "label": "Scarpe da corsa",
+      "description": "Scarpe da corsa leggere e confortevoli per gli appassionati dello sport.",
+      "price": 79.99,
+      "category": 4,
+      "image": "scarpe_corsa.jpg"
+    },
+    {
+      "id": 5,
+      "label": "Televisore 4K",
+      "description": "Un televisore 4K con schermo da 55 pollici e audio Dolby Atmos.",
+      "price": 799.99,
+      "category": 1,
+      "image": "televisore_4k.jpg"
+    },
+    {
+      "id": 6,
+      "label": "Giacca di pelle",
+      "description": "Una giacca di pelle di alta qualità per l'autunno.",
+      "price": 149.99,
+      "category": 2,
+      "image": "giacca_pelle.jpg"
+    },
+    {
+      "id": 7,
+      "label": "Set da cucina in acciaio inox",
+      "description": "Un set completo di pentole e padelle in acciaio inox.",
+      "price": 199.99,
+      "category": 3,
+      "image": "set_cucina.jpg"
+    },
+    {
+      "id": 8,
+      "label": "Palla da calcio",
+      "description": "Un pallone da basket professionale per allenamenti e partite.",
+      "price": 19.99,
+      "category": 4,
+      "image": "palla_calcio.jpg"
+    },
+    {
+      "id": 9,
+      "label": "Laptop Ultrabook",
+      "description": "Un laptop leggero e potente per il lavoro e l'intrattenimento.",
+      "price": 999.99,
+      "category": 1,
+      "image": "laptop_ultrabook.jpg"
+    },
+    {
+      "id": 10,
+      "label": "Cuffie wireless",
+      "description": "Cuffie wireless con cancellazione attiva del rumore per un audio impeccabile.",
+      "price": 149.99,
+      "category": 1,
+      "image": "cuffie_wireless.jpg"
+    },
+    {
+      "id": 11,
+      "label": "Jeans classici",
+      "description": "Jeans classici in denim per un look casual.",
+      "price": 39.99,
+      "category": 2,
+      "image": "jeans_classici.jpg"
+    },
+    {
+      "id": 12,
+      "label": "Lampada da tavolo",
+      "description": "Una lampada da tavolo elegante per illuminare il tuo spazio.",
+      "price": 29.99,
+      "category": 3,
+      "image": "lampada_tavolo.jpg"
+    },
+    {
+      "id": 13,
+      "label": "Pallone da basket",
+      "description": "Un pallone da basket professionale per allenamenti e partite.",
+      "price": 24.99,
+      "category": 4,
+      "image": "pallone_basket.jpg"
+    },
+    {
+      "id": 14,
+      "label": "Forno a microonde",
+      "description": "Un forno a microonde con varie funzioni di cottura.",
+      "price": 79.99,
+      "category": 3,
+      "image": "forno_microonde.jpg"
+    },
+    {
+      "id": 15,
+      "label": "Borsa per laptop",
+      "description": "Una borsa elegante per trasportare il tuo laptop e accessori.",
+      "price": 49.99,
+      "category": 2,
+      "image": "borsa_laptop.jpg"
+    },
+    {
+      "id": 16,
+      "label": "Bici da corsa",
+      "description": "Una bici da corsa leggera e veloce per gli appassionati del ciclismo.",
+      "price": 999.99,
+      "category": 4,
+      "image": "bici_corsa.jpg"
+    },
+    {
+      "id": 17,
+      "label": "Sedia da ufficio ergonomica",
+      "description": "Una sedia da ufficio ergonomicamente progettata per il massimo comfort.",
+      "price": 149.99,
+      "category": 3,
+      "image": "sedia_ufficio.jpg"
+    },
+    {
+      "id": 18,
+      "label": "Tablet Android",
+      "description": "Un tablet Android potente e versatile per l'intrattenimento e la produttività.",
+      "price": 199.99,
+      "category": 1,
+      "image": "tablet_android.jpg"
+    },
+    {
+      "id": 19,
+      "label": "Orologio da polso elegante",
+      "description": "Un orologio da polso elegante con cinturino in pelle.",
+      "price": 69.99,
+      "category": 2,
+      "image": "orologio_pols.jpg"
+    },
+    {
+      "id": 20,
+      "label": "Attrezzatura da campeggio e da giardino!",
+      "description": "Attrezzatura da campeggio completa per avventure all'aperto.",
+      "price": "399.99",
+      "category": 3,
+      "image": "Attrezzatura_da_campeggio_e_da_giardino!.png"
+    },
+    {
+      "id": 21,
+      "label": "Forza quattro!",
+      "description": "Un gioco da tavolo, ideale per serate tra amici.",
+      "price": "22.30",
+      "image": "Forza_quattro!.png"
+    },
+    {
+      "label": "Carte Francesi",
+      "description": "Un gioco tradizionale che non tramonta mai",
+      "price": "23",
+      "image": "Carte_Francesi.jpeg",
+      "id": 22
+    },
+    {
+      "label": "Macchina del Caffe'",
+      "description": "Una moka che fa caffe a go go",
+      "price": "23.4",
+      "image": "Macchina_del_Caffe'.jpeg",
+      "id": 23
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "label": "Elettronica",
+      "image": "1"
+    },
+    {
+      "id": 2,
+      "label": "Abbigliamento",
+      "image": "2"
+    },
+    {
+      "id": 3,
+      "label": "Casa e Giardino",
+      "image": "3"
+    },
+    {
+      "id": 4,
+      "label": "Sport",
+      "image": "4"
+    }
+  ]
+}

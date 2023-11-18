@@ -1,0 +1,79 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 2
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 3
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 4
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 5
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 7
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 8
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 9
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 10
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 11
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 12
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 13
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 14
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 15
+    },
+    {
+      "title": "my title 2",
+      "author": "my author 2",
+      "id": 16
+    }
+  ]
+}
