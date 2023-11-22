@@ -1,6 +1,8 @@
 "use client"
-import { useState, useRef} from 'react';
+import { useState, useRef, useEffect} from 'react';
 import { memo } from 'react';
+
+import { Ingredient } from '../lib/definitions';
 
 const measurement = [
     "grammi (g)",
@@ -10,29 +12,31 @@ const measurement = [
     "tazze",
     "cucchiaini da tè",
     "cucchiai da tavola",
-    "pezzi",
-    "numero di quantita'"
+    "pezzo/i",
+    "numero di quantita'",
+    "foglia/e",
+    "pizzico/chi",
+    "a piacere"
 ];
 
 
 
-import { types } from 'util';
-
-type Ingredient = {
-    name: string,
-    quantity: number,
-    measurement: string
-}
 
 
-
-
-function Ingredients() {
+function Ingredients({setSendRecipe, values = null}: {setSendRecipe: any, values: Ingredient[] | null}) {
     const formRef = useRef<HTMLFormElement>(null);
 
     const [ingredientsList, setIngredientsList] = useState<Ingredient[]>([])
+    const [disableImputs, setDisableImputs] = useState<boolean>(false)
 
+useEffect(()=>{
+    if (values) {
+        console.log("vedimi nella mdifya ingredients", values)
+        setIngredientsList(values)  
+    }
 
+    console.log("vedimi nella mdifya ingredients2", values) 
+}, [values])
 
 
     function handleInputs(e: any) {
@@ -54,41 +58,56 @@ function Ingredients() {
 
     function deleteItem(i:number) {
         setIngredientsList(ingredientsList.filter((el, index) => i !== index))
+        setDisableImputs(false)
+    }
+    function sendData() {
+        setDisableImputs(true)
+        console.log("pronto per invio", ingredientsList);
+        setSendRecipe({
+            type: "ingredients", 
+            payload: ingredientsList
+          })
     }
     return (
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Ingredienti</h2>
-            <div className='bg-slate-200 flex flex-row gap-2 p-4'>
+        <div className='text-gray-200 flex flex-col gap-1 '>
+            <h2 className="text-2xl text-right font-bold m-4">Ingredienti</h2>
+            <div className='bg-slate-700 flex flex-row gap-2 p-4'>
                 <div className="w-1/2">
-                    <h2 className="text-xl font-semibold mb-2">Ingredienti selezionati</h2>
+                    <div className='flex gap-2'>
+                        <h2 className="text-xl font-semibold mb-2">Ingredienti selezionati</h2>
+                        {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> setDisableImputs(false)}>modifica</button> }
+                    </div>
+                    
                     <div>
                         <ul>
                             {ingredientsList.map((items, i) => (
-                                <li key={i + 'listIngredients'} className="mb-1">{`N.${i + 1}: ${items.name}, ${items.quantity} ${items.measurement}`} <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> deleteItem(i)}>X</button></li>
+                                <li key={i + 'listIngredients'} className="mb-1">{`N.${i + 1}: ${items.name}, ${items.quantity} ${items.measurement}`}{!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> deleteItem(i)}>X</button> } </li>
                             ))}
                         </ul>
                     </div>
                 </div>
-                <form ref={formRef} onSubmit={handleInputs} className='bg-slate-300 flex flex-col p-4' action="">
+                <form ref={formRef} onSubmit={handleInputs} className='bg-gray-900 flex flex-col p-4 border rounded-xl' action="">
                     <label className='flex flex-row gap-1 items-center justify-between mb-4' htmlFor='ingredient'>
                         Ingrediente:
-                        <input type='text' id='ingredient' name='ingredient' required className="border rounded px-2 py-1" />
+                        <input type='text' disabled={disableImputs} id='ingredient' name='ingredient' required className="text-gray-900 border rounded px-2 py-1" />
                     </label>
                     <label className='flex flex-row gap-1 items-center justify-between mb-4' htmlFor='quantity'>
                         Quantita:
-                        <input type='number' min={1} id='quantity' name='quantity' required className="border rounded px-2 py-1" />
+                        <input type='number' disabled={disableImputs} min={1} id='quantity' name='quantity' required className="text-gray-900 border rounded px-2 py-1" />
                     </label>
                     <label className='flex flex-row gap-1 items-center justify-between mb-4' htmlFor="measurement">
                         Seleziona un'unità di misura:
-                        <select name="measurement" id="measurement" required className="border rounded px-2 py-1">
+                        <select name="measurement" disabled={disableImputs} id="measurement" required className="text-gray-900 border rounded px-2 py-1">
                             <option value="">Seleziona un'unità di misura</option>
                             {measurement.map((item, index) => (
                                 <option key={index + "value"} value={item}>{item}</option>
                             ))}
                         </select>
                     </label>
-                    <button type='submit' className="bg-blue-500 text-white px-4 py-2 rounded">Aggiungi ingrediente</button>
+                    <button type='submit' disabled={disableImputs} className="bg-blue-500 text-white px-4 py-2 rounded">Aggiungi ingrediente</button>
+                    {!disableImputs && <button type='button' onClick={sendData} className="bg-blue-800 mt-2 text-white px-4 py-2 rounded">Termina sezione</button>}
                 </form>
+                
             </div>
         </div>
     )
