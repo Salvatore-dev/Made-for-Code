@@ -71,11 +71,12 @@ function MainInformationRecipe({ setSendRecipe, values = null }: { setSendRecipe
   return (
     <div className='text-gray-200 flex flex-col gap-1 '>
       <h2 className="text-2xl text-right font-bold m-4">Scheda Ricetta</h2>
-      <div className='bg-slate-700 flex flex-row gap-2 p-4'>
+      <div className='bg-slate-700 flex flex-row justify-between p-4'>
+
         <div className="w-1/2">
           <div className='flex gap-2'>
             <h2 className="text-xl font-semibold mb-2">Informazioni generali</h2>
-            {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={setDefault}>modifica</button>}
+            {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 mr-2 py-1 text-sm" onClick={setDefault}>modifica</button>}
           </div>
           <div>
             <ul>

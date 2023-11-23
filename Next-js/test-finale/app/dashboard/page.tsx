@@ -41,10 +41,10 @@ function Dashboard() {
     const resp = await response.json()
     console.log("vedi risposta della delete", resp);
     if (resp.success) {
-      const r = data?.filter(el => {
+      const listFiltered : Recipes_type[] = data?.filter(el => {
         return el.name !== recipe
       })
-      setData(r)
+      setData(listFiltered)
     }
 
   }
@@ -60,38 +60,32 @@ function Dashboard() {
       </div>
       <div className="flow-root">
         <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-          {data && data.map(el => (
+          <AnimatePresence>
+            {data && data.map(el => (
+                <motion.li
+                  initial={{ translateX: -500 }}
+                  animate={{ translateX: 0 }}
+                  transition={{ duration: 2 }}
+                  exit={{ translateX: -500, opacity: 0 }}
 
-            <AnimatePresence>
-              <motion.li 
-              initial={{ translateX: -200 }}
-              animate={{ translateX: 0 }}
-              transition={{ duration: 2 }}
-              exit={{ translateX: -200, opacity: 0 }}
-
-              key={el.name} className="py-3 sm:py-4">
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <img className="w-12 h-12 rounded-full hidden sm:block" src={el.url} alt="Neil image" />
+                  key={el.name} className="py-3 sm:py-4">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <img className="w-12 h-12 rounded-full hidden sm:block" src={el.url} alt="Neil image" />
+                    </div>
+                    <div className="flex-1 min-w-0 sm:ms-4">
+                      <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        {el.name}
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white gap-2">
+                      <Link className=' bg-yellow-600 text-center text-base sm:text-lg p-1 sm:p-2 border rounded-lg' href={`dashboard/modify/${el.name}`}>Modifica</Link>
+                      <button className=' bg-red-900 text-center text-base sm:text-lg p-1 sm:p-2 border rounded-lg' onClick={() => deleteRecipe(el.name)} >Elimina ricetta</button>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0 sm:ms-4">
-                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                      {el.name}
-                    </p>
-
-                  </div>
-                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white gap-2">
-                    <Link className=' bg-yellow-600 text-center text-base sm:text-lg p-1 sm:p-2 border rounded-lg' href={`dashboard/modify/${el.name}`}>Modifica</Link>
-                    <button className=' bg-red-900 text-center text-base sm:text-lg p-1 sm:p-2 border rounded-lg' onClick={() => deleteRecipe(el.name)} >Elimina ricetta</button>
-                  </div>
-                </div>
-              </motion.li>
-              <hr key={el.name + "hr"} />
-
-            </AnimatePresence>
-
-          ))}
-
+                </motion.li>
+            ))}
+          </AnimatePresence>
 
         </ul>
       </div>

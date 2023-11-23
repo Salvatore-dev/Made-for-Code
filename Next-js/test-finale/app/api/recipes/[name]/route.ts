@@ -1,6 +1,7 @@
 import connectDb from '@/app/connectDb';
 import { NextRequest } from 'next/server';
 import { revalidateTag } from 'next/cache';
+import { RowDataPacket } from 'mysql2';
 
 
 export async function GET(request: NextRequest, response: any): Promise<Response> {
@@ -83,7 +84,7 @@ export async function DELETE(request: NextRequest, response : any) : Promise<Res
 
       const resp = await connectDb.query(
           'DELETE FROM recipes WHERE recipes.name=?', [name]) 
-          const affectedRows = resp[0].affectedRows
+          const affectedRows = resp[0].affectedRows 
           console.log("vedi qui", );
           
       

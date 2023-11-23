@@ -60,11 +60,11 @@ function Steps({setSendRecipe, values = null} : {setSendRecipe: any, values?: St
     return (
         <div className='text-gray-200 flex flex-col gap-1 '>
             <h2 className="text-2xl text-right font-bold m-4">Preparazione</h2>
-            <div className='bg-slate-700 flex flex-row gap-2 p-4'>
+            <div className='bg-slate-700 flex flex-row justify-between gap-2 p-4'>
                 <div className="w-1/2">
                 <div className='flex gap-2'>
                         <h2 className="text-xl font-semibold mb-2">Preparazione: </h2>
-                        {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> setDisableImputs(false)}>modifica</button> }
+                        {disableImputs && <button className="ml-2 bg-red-500 text-white rounded ml-2 px-2 py-1 text-sm" onClick={()=> setDisableImputs(false)}>modifica</button> }
                     </div>
                     <div>
                         <ul>

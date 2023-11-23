@@ -59,7 +59,7 @@ export default function Home() {
       <section className='bg-gray-700'>
         <div className="flex justify-center items-center">
           <div className='grid grid-cols-12 bg-gray-700 '>
-            {data.map((el) => (
+            {data.map((el : Recipes_type) => (
               <div className="col-span-12 sm:col-span-6 md:col-span-4 m-8 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={el.id}>
                 <img className="card-image rounded-t-lg" alt={el.name} src={el.url} width={382}
                   height={254} />
