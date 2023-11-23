@@ -2,26 +2,27 @@ import { type } from 'os';
 import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import { memo } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import { Recipe_main } from '../lib/definitions';
 
 
-function MainInformationRecipe({setSendRecipe, values = null} : {setSendRecipe: any, values: Recipe_main[]| null}) {
+function MainInformationRecipe({ setSendRecipe, values = null }: { setSendRecipe: any, values?: Recipe_main[] | null }) {
 
   const formRef = useRef<HTMLFormElement>(null);
 
   const [mainInformation, setMainInformation] = useState<Recipe_main[]>([])
   const [disableImputs, setDisableImputs] = useState<boolean>(false)
-  const [checkEnter, setCheckEnter] = useState<boolean>(false) 
+  const [checkEnter, setCheckEnter] = useState<boolean>(false)
 
 
-  useEffect(()=>{
+  useEffect(() => {
     if (values) {
-        console.log("vedimi nella mdifya ingredients", values)
-        setMainInformation(values)  
+      //console.log("vedimi nella mdifya ingredients", values)
+      setMainInformation(values)
     }
 
-    console.log("vedimi nella mdifya ingredients2", values) 
-}, [values])
+    //console.log("vedimi nella mdifya ingredients2", values) 
+  }, [values])
 
   function handleInputs(e: any) {
     e.preventDefault()
@@ -36,7 +37,7 @@ function MainInformationRecipe({setSendRecipe, values = null} : {setSendRecipe: 
     }
     console.log("vedi qui", items);
 
-    setMainInformation(prev => [...prev, items])
+    setMainInformation(prev => [items])
     formRef.current?.reset();
     setDisableImputs(true)
   }
@@ -49,18 +50,24 @@ function MainInformationRecipe({setSendRecipe, values = null} : {setSendRecipe: 
     setDisableImputs(true)
     console.log("pronto per invio", mainInformation);
     setSendRecipe({
-      type: "main", 
+      type: "main",
       payload: mainInformation
     })
     setCheckEnter(true)
-    
-}
 
-function setDefault() {
-  setDisableImputs(false)
-  setCheckEnter(false)
-  setMainInformation([])
-}
+  }
+
+  useEffect(() => {
+    if (mainInformation.length >= 1) {
+      setDisableImputs(true)
+    }
+  }, [mainInformation])
+
+  function setDefault() {
+    setDisableImputs(false)
+    setCheckEnter(false)
+    setMainInformation([])
+  }
   return (
     <div className='text-gray-200 flex flex-col gap-1 '>
       <h2 className="text-2xl text-right font-bold m-4">Scheda Ricetta</h2>
@@ -72,16 +79,24 @@ function setDefault() {
           </div>
           <div>
             <ul>
-              {mainInformation.map((items, i) => (
-                <div key={i + 'main information'} className="mb-1">{`Ricetta: ${items.name}, per ${items.persons} persone`} {!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={() => deleteItem(i)}>X</button>}</div>
-              ))}
+              <AnimatePresence>
+                {mainInformation.map((items, i) => (
+                  <motion.div
+                    initial={{ translateX: -200 }}
+                    animate={{ translateX: 0 }}
+                    transition={{ duration: 2 }}
+                    exit={{ translateX: -200, opacity: 0 }}
+                    key={i + 'main information'} className="mb-1">{`Ricetta: ${items.name}, per ${items.persons} persone`} {!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={() => deleteItem(i)}>X</button>}</motion.div>
+                ))}
+              </AnimatePresence>
+
             </ul>
           </div>
         </div>
         <form ref={formRef} onSubmit={handleInputs} className='bg-gray-900 flex flex-col p-4 border rounded-xl' action="">
           <label className='flex flex-row gap-1 items-center justify-between mb-4' htmlFor='recipe'>
             Nome ricetta:
-            <input type='text' id='recipe' disabled={disableImputs} name='recipe' required className="  border rounded px-2 py-1" />
+            <input type='text' id='recipe' disabled={disableImputs} name='recipe' required className=" text-gray-900 border rounded px-2 py-1" />
           </label>
           <label className='flex flex-row gap-1 items-center justify-between mb-4' htmlFor='persons'>
             Per numero persone:
@@ -92,7 +107,7 @@ function setDefault() {
             <input type='text' id='recipe_image' disabled={disableImputs} name='recipe_image' required className="text-gray-900 border rounded px-2 py-1" />
           </label>
           {!disableImputs && <button type='submit' disabled={disableImputs} className="bg-blue-800 text-white px-4 py-2 rounded">Aggiungi informazioni</button>}
-          {disableImputs && <button type='button' disabled={checkEnter} onClick={sendData} className="bg-blue-800 mt-2 text-white px-4 py-2 rounded">{checkEnter? "Modulo inviato": "Invia dati"}</button>}
+          {disableImputs && <button type='button' disabled={checkEnter} onClick={sendData} className="bg-blue-800 mt-2 text-white px-4 py-2 rounded">{checkEnter ? "Modulo inviato" : "Invia dati"}</button>}
         </form>
       </div>
     </div>

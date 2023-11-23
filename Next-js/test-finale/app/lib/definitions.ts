@@ -28,5 +28,6 @@ type Recipe = {
     main : Recipe_main[] | [],
     ingredients: Ingredient[] | [],
     steps: Step[] |[],
+    id?: number | null
 } 
 export type {Recipes_type, Step, Ingredient, Recipe_main, Recipe}

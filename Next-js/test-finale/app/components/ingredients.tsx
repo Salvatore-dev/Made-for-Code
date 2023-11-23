@@ -1,7 +1,7 @@
 "use client"
-import { useState, useRef, useEffect} from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { memo } from 'react';
-
+import { motion, AnimatePresence } from "framer-motion";
 import { Ingredient } from '../lib/definitions';
 
 const measurement = [
@@ -16,27 +16,28 @@ const measurement = [
     "numero di quantita'",
     "foglia/e",
     "pizzico/chi",
-    "a piacere"
+    "a piacere",
+    "spicchio/i"
 ];
 
 
 
 
 
-function Ingredients({setSendRecipe, values = null}: {setSendRecipe: any, values: Ingredient[] | null}) {
+function Ingredients({ setSendRecipe, values = null }: { setSendRecipe: any, values?: Ingredient[] | null }) {
     const formRef = useRef<HTMLFormElement>(null);
 
     const [ingredientsList, setIngredientsList] = useState<Ingredient[]>([])
     const [disableImputs, setDisableImputs] = useState<boolean>(false)
 
-useEffect(()=>{
-    if (values) {
-        console.log("vedimi nella mdifya ingredients", values)
-        setIngredientsList(values)  
-    }
+    useEffect(() => {
+        if (values) {
+            console.log("vedimi nella mdifya ingredients", values)
+            setIngredientsList(values)
+        }
 
-    console.log("vedimi nella mdifya ingredients2", values) 
-}, [values])
+        console.log("vedimi nella mdifya ingredients2", values)
+    }, [values])
 
 
     function handleInputs(e: any) {
@@ -56,7 +57,7 @@ useEffect(()=>{
         formRef.current?.reset();
     }
 
-    function deleteItem(i:number) {
+    function deleteItem(i: number) {
         setIngredientsList(ingredientsList.filter((el, index) => i !== index))
         setDisableImputs(false)
     }
@@ -64,9 +65,9 @@ useEffect(()=>{
         setDisableImputs(true)
         console.log("pronto per invio", ingredientsList);
         setSendRecipe({
-            type: "ingredients", 
+            type: "ingredients",
             payload: ingredientsList
-          })
+        })
     }
     return (
         <div className='text-gray-200 flex flex-col gap-1 '>
@@ -75,14 +76,22 @@ useEffect(()=>{
                 <div className="w-1/2">
                     <div className='flex gap-2'>
                         <h2 className="text-xl font-semibold mb-2">Ingredienti selezionati</h2>
-                        {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> setDisableImputs(false)}>modifica</button> }
+                        {disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={() => setDisableImputs(false)}>modifica</button>}
                     </div>
-                    
+
                     <div>
                         <ul>
-                            {ingredientsList.map((items, i) => (
-                                <li key={i + 'listIngredients'} className="mb-1">{`N.${i + 1}: ${items.name}, ${items.quantity} ${items.measurement}`}{!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> deleteItem(i)}>X</button> } </li>
-                            ))}
+                            <AnimatePresence>
+                                {ingredientsList.map((items, i) => (
+                                    <motion.li
+                                    initial={{ translateX: -200 }}
+                                    animate={{ translateX: 0 }}
+                                    transition={{ duration: 2 }}
+                                    exit={{ translateX: -200, opacity: 0 }}
+                                        key={i + 'listIngredients'} className="mb-1">{`N.${i + 1}: ${items.name}, ${items.quantity} ${items.measurement}`}{!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={() => deleteItem(i)}>X</button>} </motion.li>
+                                ))}
+                            </AnimatePresence>
+
                         </ul>
                     </div>
                 </div>
@@ -107,7 +116,7 @@ useEffect(()=>{
                     <button type='submit' disabled={disableImputs} className="bg-blue-500 text-white px-4 py-2 rounded">Aggiungi ingrediente</button>
                     {!disableImputs && <button type='button' onClick={sendData} className="bg-blue-800 mt-2 text-white px-4 py-2 rounded">Termina sezione</button>}
                 </form>
-                
+
             </div>
         </div>
     )

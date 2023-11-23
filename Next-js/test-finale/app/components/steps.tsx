@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from 'react';
 import { memo } from 'react';
 import { Step } from '../lib/definitions';
@@ -12,7 +12,7 @@ const measurement = [
     "ore (h)"
 ];
 
-function Steps({setSendRecipe, values = null} : {setSendRecipe: any, values: Step[] | null}) {
+function Steps({setSendRecipe, values = null} : {setSendRecipe: any, values?: Step[] | null}) {
     const [todoList, setTodoList] = useState<Step[]>([])
     const [disableImputs, setDisableImputs] = useState<boolean>(false)
 
@@ -68,16 +68,25 @@ function Steps({setSendRecipe, values = null} : {setSendRecipe: any, values: Ste
                     </div>
                     <div>
                         <ul>
-                            {todoList.map((items, i) => (
-                                <div key={i + "listTodo"} className="border p-4 mb-4 rounded">
+                            <AnimatePresence>
+                                {todoList.map((items, i) => (
+                                <motion.div 
+                                initial={{ translateX: -400 }}
+                                    animate={{ translateX: 0 }}
+                                    transition={{ duration: 2 }}
+                                    exit={{ translateX: -400, opacity: 0 }}
+                                
+                                key={i + "listTodo"} className="border p-4 mb-4 rounded">
                                     <div className="flex items-center justify-between">
                                         <span className="text-lg font-semibold">{`Step ${i + 1}:`}</span>
                                         {!disableImputs && <button className="ml-2 bg-red-500 text-white rounded px-2 py-1 text-sm" onClick={()=> deleteItem(i)}>X</button> }
                                     </div>
                                     <p className="mt-2">{items.text}</p>
                                     <p className="text-gray-200">{`Tempo necessario: ${items.duration} ${items.measurement}`}</p>
-                                </div>
+                                </motion.div>
                             ))}
+                            </AnimatePresence>
+                            
                         </ul>
                     </div>
                 </div>

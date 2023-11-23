@@ -49,26 +49,26 @@ export default function Home() {
         totalDuration += el.duration / 60
       }
     })
-    return totalDuration
+    return Math.floor(totalDuration)
   }
 
   return (
     <>
 
 
-      <section>
+      <section className='bg-gray-700'>
         <div className="flex justify-center items-center">
-          <div className='grid grid-cols-12 '>
+          <div className='grid grid-cols-12 bg-gray-700 '>
             {data.map((el) => (
               <div className="col-span-12 sm:col-span-6 md:col-span-4 m-8 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" key={el.id}>
                 <img className="card-image rounded-t-lg" alt={el.name} src={el.url} width={382}
                   height={254} />
-                <div className="p-5">
+                <div className="p-3 flex flex-col justify-center gap-1">
                   <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{el.name}</h5>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Ricetta per {el.preparation.persons}:</strong> persone</p>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    <strong>Tempo di preparazione: {getDuration((el.instructions))} minuti </strong>
+                    <strong>Tempo di preparazione: {getDuration((el.instructions))} minuti circa </strong>
                   </p>
                   <Link
                     href={`/recipes/${el.name}`} className="mt-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">

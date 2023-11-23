@@ -1,15 +1,17 @@
 "use client"
 
 import React from 'react'
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react'
 import Ingredients from './ingredients'
 import Steps from './steps'
 import MainInformationRecipe from './mainInformationRecipe'
+import Link from 'next/link'
 
 import { Recipe } from '../lib/definitions'
 
 
 function RecipeSchedule() {
+  const [confirmPost, setConfirmPost] = useState<boolean>(false)
 
   const defaultRecipe : Recipe = {
     main : [],
@@ -51,6 +53,9 @@ function RecipeSchedule() {
   });
 
   console.log("vedi risultato invio da client",send.ok);
+  if (send.ok) {
+    setConfirmPost(true)
+  }
   
   }
   return (
@@ -61,7 +66,11 @@ function RecipeSchedule() {
         <MainInformationRecipe setSendRecipe={setSendRecipe} />
         <Ingredients setSendRecipe={setSendRecipe} />
         <Steps setSendRecipe={setSendRecipe}/>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={sendData}>Invia ricetta</button>
+        <div className=' bg-gray-900 flex gap-3 items-center'>
+          {!confirmPost ? <button className="bg-blue-700 text-white m-4 px-4 py-2 rounded" onClick={sendData}>Invia ricetta</button> : <Link className="bg-green-800 text-white m-4 px-4 py-2 rounded" href={`/`}>Torna alla home</Link>}
+        </div>
+        
+        {/* <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={sendData}>Invia ricetta</button> */}
     </section>
   )
 }
